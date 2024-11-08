@@ -10,3 +10,6 @@ visualizations/crime_map.html
 # Too large for github
 data/crime/Tucson_Police_Arrests-2018-to-2024.geojson
 data/crime/Tucson_Police_Reported_Crimes.geojson
+
+# Before converting to notebook
+.src-pre-notebook-conversion

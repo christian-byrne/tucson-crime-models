@@ -1,8 +1,0 @@
-{
-  "log_level": "DEBUG",
-  "tucson_center_coordinates": [32.2226, -110.9747],
-  "tucson_bounds" : [-111, 32.0, -110.9747, 32.2226],
-  "paths" : {
-    "visualizations" : "visualizations"
-  }
-}
