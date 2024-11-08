@@ -1,0 +1,9 @@
+# Dev
+rich
+
+# EDA
+geopandas
+matplotlib
+folium
+
+# ...
