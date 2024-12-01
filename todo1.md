@@ -6,7 +6,6 @@
 
 - **Issue** need to ensure that any dataset used for features fully encompasses/spans all the subsections chosen
 - **Consider** selecting between `geometry.within`, `geometry.intersects` or `geometry.overlaps` depending on the nature of the data set (choose case-by-case)
-
 - 
 
 
