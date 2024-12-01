@@ -6,7 +6,7 @@
 
 - **Issue** need to ensure that any dataset used for features fully encompasses/spans all the subsections chosen
 - **Consider** selecting between `geometry.within`, `geometry.intersects` or `geometry.overlaps` depending on the nature of the data set (choose case-by-case)
-- 
+- **Consider** how to use speed limit data -- e.g., use mean speed limit for each subsection to create singular value per data item (row) -- would require considering the length of road as well so it's difficult
 
 
 
