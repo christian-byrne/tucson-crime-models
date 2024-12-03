@@ -19,7 +19,11 @@
 
 ## General
 
-- [ ] **Decide** how to use speed limit data -- e.g., use mean speed limit for each subsection to create singular value per data item (row) -- would require considering the length of road as well so it's difficult
+- [ ] Determine why the `business_license` dataset is not being working
+- [ ] Create a heatmap variant of the crime frequency visualization
+- [ ] Take all abritrary values (or numbers used in functions that can be thought of as arbitrary and parametrized) → put into the global config object → treat as hyperparameters → tune them
+- [ ] If and how to remove outliers
+- [ ] Decide how to use speed limit data -- e.g., use mean speed limit for each subsection to create singular value per data item (row) -- would require considering the length of road as well so it's difficult
 - [ ] (most likely no longer relevant) ~~Use a more efficient method of joining data by geographic distance. E.g., connecting arrest incidents with nearest sidewalk. Current method could take hours with 50k arrests dataset.~~
 - [ ] When making Folium maps (geographic maps with popup markers on them), use a plotting technique more appropriate to the data (refer to lecture slides). E.g., a heat map, contour plot, hexagon scatter plot.
 - [x] In the [datasets](https://github.com/christian-byrne/tucson-crime-models/tree/main/data), go to `infrastructure` folder, choose other infrastructure datasets (e.g., `streetlights`), and explore correlations in the same way it's been done for sidewalks in [Analzing correlation between distance to sidewalks and arrest frequency](https://colab.research.google.com/github/christian-byrne/tucson-crime-models/blob/main/main.ipynb#scrollTo=q-fOMfTsP1vG&line=1&uniqifier=1)
@@ -71,7 +75,7 @@
 
 ## Development Process
 
-1. [ ] Create subsections
+1. [x] Create subsections
 
    - function that takes:
      - number subsections
@@ -79,7 +83,7 @@
        - width/height
      - returns list of: -`bbox` (bounding box) - type: `tuple[Float]` - (lat_lower, lat_upper, long_lower, long_upper)
 
-2. [ ] Collecting and organizing data into format:
+2. [x] Collecting and organizing data into format:
 
    | num sidewalks | .... | characteristics | ... | total number of crimes |
    | ------------- | ---- | --------------- | --- | ---------------------- |
@@ -89,15 +93,15 @@
 
 3. [ ] Data cleaning
 
-   - [ ] z-score normalize (e.g., use `sklearn.preprocessing.StandardScaler`)
+   - [x] z-score normalize (e.g., use `sklearn.preprocessing.StandardScaler`)
    - [ ] remove outliers
-   - [ ] remove missing data
+   - [x] remove missing data
    - [ ] remove duplicates
    - [ ] validate geographical area of interest matches with function that creates subsection
 
-4. [ ] Split data into training and testing sets
+4. [x] Split data into training and testing sets
 
-5. [ ] Determining best regression type:
+5. [x] Determining best regression type:
 
    - For each regression type, hyperpamater tuning (determine optimal params)
      - Best subsets
@@ -108,7 +112,7 @@
        - best lambda/alpha
    - Choose best regression type
 
-6. [ ] Use given regression type to fit model
+6. [x] Use given regression type to fit model
 
 7. [ ] (hyperparamater tuning ?) afterwards
 
