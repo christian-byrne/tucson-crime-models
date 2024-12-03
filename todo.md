@@ -1,14 +1,14 @@
 - [TODO](#todo)
   - [General](#general)
   - [Data Validation](#data-validation)
-  - [Data Retrieval](#data-retrieval)
-- [Model 1 - Multi-Variable Linear Regression on GIS Data](#model-1---multi-variable-linear-regression-on-gis-data)
+  - [Data Collection](#data-collection)
+- [Model 1—Subsection-Level Crime Frequency Prediction Using Infrastructure and Socioeconomic Features](#model-1subsection-level-crime-frequency-prediction-using-infrastructure-and-socioeconomic-features)
   - [Data](#data)
     - [Items](#items)
     - [Inputs/Features](#inputsfeatures)
     - [Output/Target](#outputtarget)
   - [Development Process](#development-process)
-- [Model 2 - (TBD) Some Classification-Based Model Using SVM, Decision Trees, and/or Logistic Regression](#model-2---tbd-some-classification-based-model-using-svm-decision-trees-andor-logistic-regression)
+- [Model 2 (TBD)—Some Classification-Based Model Using SVM, Decision Trees, and/or Logistic Regression](#model-2-tbdsome-classification-based-model-using-svm-decision-trees-andor-logistic-regression)
   - [Data](#data-1)
     - [Items](#items-1)
     - [Inputs/Features](#inputsfeatures-1)
@@ -30,11 +30,11 @@
 - [ ] function to ensure that any dataset used for features **fully encompasses/spans** all the subsections chosen
   - function to check geographical domain of datasets then create intersection $\rightarrow$ give to function that creates subsections
 
-## Data Retrieval
+## Data Collection
 
 - [ ] (optional) selecting between `geometry.within`, `geometry.intersects` or `geometry.overlaps` depending on the nature of the data set (choose case-by-case)
 
-# Model 1 - Multi-Variable Linear Regression on GIS Data
+# Model 1—Subsection-Level Crime Frequency Prediction Using Infrastructure and Socioeconomic Features
 
 ## Data
 
@@ -79,7 +79,7 @@
        - width/height
      - returns list of: -`bbox` (bounding box) - type: `tuple[Float]` - (lat_lower, lat_upper, long_lower, long_upper)
 
-2. [ ] Retrieving and organizing data into format:
+2. [ ] Collecting and organizing data into format:
 
    | num sidewalks | .... | characteristics | ... | total number of crimes |
    | ------------- | ---- | --------------- | --- | ---------------------- |
@@ -120,7 +120,7 @@
      - real model developed in actual scientific literature that does same thing
        - theres also a section of the report "Related Works" for this
 
-# Model 2 - (TBD) Some Classification-Based Model Using SVM, Decision Trees, and/or Logistic Regression
+# Model 2 (TBD)—Some Classification-Based Model Using SVM, Decision Trees, and/or Logistic Regression
 
 want to:
 
