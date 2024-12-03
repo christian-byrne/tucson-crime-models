@@ -19,6 +19,8 @@
 
 ## General
 
+- [x] Determine outer bounds using ~~some better approach~~ (for now: sidewalks feature dataset, since arrests has a ton of geographically dispersed data/outliers way outside bounds of the other datasets) 
+- [ ] Move feature engineering stuff into data processing, especially because we need the results of that code earlier on (e.g., for data viz)
 - [ ] Setup feature processing for socioeconomic features
 - [ ] Implement the separation of _distance_to_ and _density_ infrastructure features
 - [ ] Fix `create_subsections` function not creating sections over entire outer bounds
