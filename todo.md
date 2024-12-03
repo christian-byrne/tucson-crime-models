@@ -19,6 +19,8 @@
 
 ## General
 
+- [ ] Setup feature processing for socioeconomic features
+- [ ] Implement the separation of _distance_to_ and _density_ infrastructure features
 - [ ] Fix `create_subsections` function not creating sections over entire outer bounds
 - [ ] Create indicator of what the outer bounds are on the visualizations
 - [ ] Change `visualize_objects_in_subsection` function to be more efficient (probably don't need to to filter by objects in subsection and can just plot all objects)
@@ -26,10 +28,11 @@
 - [ ] Determine why the `business_license` dataset is not being working
 - [ ] Create a heatmap variant of the crime frequency visualization
 - [x] ~~Are subsections actually too long (longitudinally)?~~ NO: the long subsections occur because the outer bounds (Tucson city bounds) create a long rectangle so naturally the subsections mirror that shape
+  - [ ] Solution: do not create $n \times n$ subsections but rather $n \times m$ subsections where $m < n$ - calculate $m$ based on the aspect ratio of the outer bounds
 - [ ] Take all abritrary values (or numbers used in functions that can be thought of as arbitrary and parametrized) → put into the global config object → treat as hyperparameters → tune them
 - [ ] If and how to remove outliers
 - [ ] Decide how to use speed limit data -- e.g., use mean speed limit for each subsection to create singular value per data item (row) -- would require considering the length of road as well so it's difficult
-- [ ] (most likely no longer relevant) ~~Use a more efficient method of joining data by geographic distance. E.g., connecting arrest incidents with nearest sidewalk. Current method could take hours with 50k arrests dataset.~~
+- [x] (most likely no longer relevant) ~~Use a more efficient method of joining data by geographic distance. E.g., connecting arrest incidents with nearest sidewalk. Current method could take hours with 50k arrests dataset.~~
 - [ ] When making Folium maps (geographic maps with popup markers on them), use a plotting technique more appropriate to the data (refer to lecture slides). E.g., a heat map, contour plot, hexagon scatter plot.
 - [x] In the [datasets](https://github.com/christian-byrne/tucson-crime-models/tree/main/data), go to `infrastructure` folder, choose other infrastructure datasets (e.g., `streetlights`), and explore correlations in the same way it's been done for sidewalks in [Analzing correlation between distance to sidewalks and arrest frequency](https://colab.research.google.com/github/christian-byrne/tucson-crime-models/blob/main/main.ipynb#scrollTo=q-fOMfTsP1vG&line=1&uniqifier=1)
 - [x] ...Explore other trends in the data with other approaches. See these [suggestions given by LLM](https://github.com/christian-byrne/tucson-crime-models/blob/main/doc/correlation-discovery.md)
