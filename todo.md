@@ -19,8 +19,11 @@
 
 ## General
 
+
+- [ ] Combine the density-feature distributions plots into a single plot/figure
 - [ ] Determine why the `business_license` dataset is not being working
 - [ ] Create a heatmap variant of the crime frequency visualization
+- [ ] Are subsections actually too long (longitudinally)?
 - [ ] Take all abritrary values (or numbers used in functions that can be thought of as arbitrary and parametrized) → put into the global config object → treat as hyperparameters → tune them
 - [ ] If and how to remove outliers
 - [ ] Decide how to use speed limit data -- e.g., use mean speed limit for each subsection to create singular value per data item (row) -- would require considering the length of road as well so it's difficult
