@@ -1,7 +1,13 @@
+- [Narrative](#narrative)
 - [TODO](#todo)
   - [General](#general)
-  - [Data Validation](#data-validation)
-  - [Data Collection](#data-collection)
+  - [Data Exploration](#data-exploration)
+  - [Data Cleaning/Collection](#data-cleaningcollection)
+  - [Feature Engineering](#feature-engineering)
+  - [Data Visualization](#data-visualization)
+  - [Hyperparameter Tuning](#hyperparameter-tuning)
+  - [Evaluation](#evaluation)
+  - [Discussion/Reflection](#discussionreflection)
 - [Model 1—Subsection-Level Crime Frequency Prediction Using Infrastructure and Socioeconomic Features](#model-1subsection-level-crime-frequency-prediction-using-infrastructure-and-socioeconomic-features)
   - [Data](#data)
     - [Items](#items)
@@ -15,38 +21,96 @@
     - [Output/Target](#outputtarget-1)
   - [Development Process](#development-process-1)
 
+# Narrative
+
+> Which is a better predictor of crime? 
+> 
+> - Socioeconomic features about people living somewhere
+> - Infrastructure/geological features about the area 
+>
+> Note: not trying to determine causal relationship, just determining which is a better predictor (in the nature of data science)
+
+**Model 1:**
+
+| Items | Inputs/Features | Output/Target | Model Type |
+| ----- | --------------- | ------------- | ---------- |
+| Subsections | Infrastructure features | Crime Frequency | Ridge/Lasso Linear Regression |
+
+**Model 2:** 
+
+| Items | Inputs/Features | Output/Target | Model Type |
+| ----- | --------------- | ------------- | ---------- |
+| Subsections | Crime Density, Possibly crime density at different zoom levels | Socioeconomic features | SVM or Decision Trees |
+
 # TODO
+
 
 ## General
 
-- [x] Determine outer bounds using ~~some better approach~~ (for now: sidewalks feature dataset, since arrests has a ton of geographically dispersed data/outliers way outside bounds of the other datasets) 
-- [ ] Move feature engineering stuff into data processing, especially because we need the results of that code earlier on (e.g., for data viz)
-- [ ] Setup feature processing for socioeconomic features
-- [ ] Implement the separation of _distance_to_ and _density_ infrastructure features
-- [ ] Fix `create_subsections` function not creating sections over entire outer bounds
-- [ ] Create indicator of what the outer bounds are on the visualizations
-- [ ] Change `visualize_objects_in_subsection` function to be more efficient (probably don't need to to filter by objects in subsection and can just plot all objects)
-- [ ] Combine the density-feature distributions plots into a single plot/figure
-- [ ] Determine why the `business_license` dataset is not being working
-- [ ] Create a heatmap variant of the crime frequency visualization
-- [x] ~~Are subsections actually too long (longitudinally)?~~ NO: the long subsections occur because the outer bounds (Tucson city bounds) create a long rectangle so naturally the subsections mirror that shape
-  - [ ] Solution: do not create $n \times n$ subsections but rather $n \times m$ subsections where $m < n$ - calculate $m$ based on the aspect ratio of the outer bounds
-- [ ] Take all abritrary values (or numbers used in functions that can be thought of as arbitrary and parametrized) → put into the global config object → treat as hyperparameters → tune them
-- [ ] If and how to remove outliers
-- [ ] Decide how to use speed limit data -- e.g., use mean speed limit for each subsection to create singular value per data item (row) -- would require considering the length of road as well so it's difficult
+- [ ] Use processes from previous HW
+  - [ ] data scale transform
+
+## Data Exploration
+
+- [x] ~~Decide how to use speed limit data -- e.g., use mean speed limit for each subsection to create singular value per data item (row) -- would require considering the length of road as well so it's difficult~~ (not important)
 - [x] (most likely no longer relevant) ~~Use a more efficient method of joining data by geographic distance. E.g., connecting arrest incidents with nearest sidewalk. Current method could take hours with 50k arrests dataset.~~
-- [ ] When making Folium maps (geographic maps with popup markers on them), use a plotting technique more appropriate to the data (refer to lecture slides). E.g., a heat map, contour plot, hexagon scatter plot.
 - [x] In the [datasets](https://github.com/christian-byrne/tucson-crime-models/tree/main/data), go to `infrastructure` folder, choose other infrastructure datasets (e.g., `streetlights`), and explore correlations in the same way it's been done for sidewalks in [Analzing correlation between distance to sidewalks and arrest frequency](https://colab.research.google.com/github/christian-byrne/tucson-crime-models/blob/main/main.ipynb#scrollTo=q-fOMfTsP1vG&line=1&uniqifier=1)
 - [x] ...Explore other trends in the data with other approaches. See these [suggestions given by LLM](https://github.com/christian-byrne/tucson-crime-models/blob/main/doc/correlation-discovery.md)
 
-## Data Validation
+## Data Cleaning/Collection
 
 - [ ] function to ensure that any dataset used for features **fully encompasses/spans** all the subsections chosen
   - function to check geographical domain of datasets then create intersection $\rightarrow$ give to function that creates subsections
+- [ ] Best way to test for feature multicollinearity?
+  - [ ] e.g., 
+    - [ ] use VIF (Variance Inflation Factor) to test for multicollinearity
+    - [x] plot correlation matrix, etc.
+  - [ ] How to handle? (part of data cleaning)
+- [ ] Move feature engineering stuff into data processing, especially because we need the results of that code earlier on (e.g., for data viz)
+- [ ] Determine why the `business_license` dataset is not being working
+- [ ] If and how to remove outliers
 
-## Data Collection
+## Feature Engineering
 
-- [ ] (optional) selecting between `geometry.within`, `geometry.intersects` or `geometry.overlaps` depending on the nature of the data set (choose case-by-case)
+- [ ] (Optional) Can test with completely random subsections similar to how bagging and random forest work -- i.e., we don't attempt to span the entire area of interest, we just randomly generate subsections within bounds (with replacement).
+  - [ ] Can also randomize the allowed area, which would naturally be random if x and y are randomly generated
+  - [ ] This approach can also be used to essentially create unlimited test data for more extensive evaluation
+- [x] ~~Are subsections actually too long (longitudinally)?~~ NO: the long subsections occur because the outer bounds (Tucson city bounds) create a long rectangle so naturally the subsections mirror that shape
+  - [x] Solution: do not create $n \times n$ subsections but rather $n \times m$ subsections where $m < n$ - calculate $m$ based on the aspect ratio of the outer bounds
+- [x] (optional) selecting between `geometry.within`, `geometry.intersects` or `geometry.overlaps` depending on the nature of the data set (choose case-by-case)
+- [ ] Fix `create_subsections` function not creating sections over entire outer bounds
+- [x] Determine outer bounds using ~~some better approach~~ (for now: sidewalks feature dataset, since arrests has a ton of geographically dispersed data/outliers way outside bounds of the other datasets) 
+- [ ] Setup feature processing for socioeconomic features
+- [x] Implement the separation of _distance_to_ and _density_ infrastructure features
+
+## Data Visualization
+
+- [ ] Refer EDA slides
+- [ ] Visualize grouped box plots of all the features similar to HW7
+- [ ] Create indicator of what the outer bounds are on the visualizations
+- [x] Change `visualize_objects_in_subsection` function to be more efficient (probably don't need to to filter by objects in subsection and can just plot all objects)
+- [x] Combine the density-feature distributions plots into a single plot/figure
+- [ ] Heatmaps over scatterplot for infrastructure on real map
+  - [ ] When making Folium maps (geographic maps with popup markers on them), use a plotting technique more appropriate to the data (refer to lecture slides). E.g., a heat map, contour plot, hexagon scatter plot.
+  - [ ] Create a heatmap variant of the crime frequency visualization
+
+## Hyperparameter Tuning
+
+- [ ] Take all abritrary values (or numbers used in functions that can be thought of as arbitrary and parametrized)
+  - [x] → put into the global config object 
+  - [x] → treat as hyperparameters 
+  - [ ] → tune them
+
+## Evaluation
+
+- [ ] On top of using the test data from initial split, also can make more subsections by changing the params of the `create_subsections` function to use different sizes, diffferent type of randomness, etc.
+
+## Discussion/Reflection
+
+- [ ] Can include in discussion: development process (todo, github history, process of recognizing sparse features and changing to `distance_to`, etc.)
+- [ ] Optional ideas
+  - [ ] Model chain: infra -> predicted density -> predicted socioeconomic feature
+  - [ ] Abstract to paths for interesting utility/inference
 
 # Model 1—Subsection-Level Crime Frequency Prediction Using Infrastructure and Socioeconomic Features
 
