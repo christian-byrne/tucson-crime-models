@@ -46,6 +46,8 @@
 
 ## General
 
+- [ ] edit written sections of notebook
+- [ ] add inline comments where necessary
 - [ ] Use processes from previous HW
   - [ ] data scale transform
 
@@ -140,7 +142,7 @@
 
 ## Development Process
 
-1. [x] Create subsections
+1. Create subsections
 
    - function that takes:
      - number subsections
@@ -148,7 +150,7 @@
        - width/height
      - returns list of: -`bbox` (bounding box) - type: `tuple[Float]` - (lat_lower, lat_upper, long_lower, long_upper)
 
-2. [x] Collecting and organizing data into format:
+2. Collecting and organizing data into format:
 
    | num sidewalks | .... | characteristics | ... | total number of crimes |
    | ------------- | ---- | --------------- | --- | ---------------------- |
@@ -158,15 +160,15 @@
 
 3. [ ] Data cleaning
 
-   - [x] z-score normalize (e.g., use `sklearn.preprocessing.StandardScaler`)
-   - [ ] remove outliers
-   - [x] remove missing data
-   - [ ] remove duplicates
-   - [ ] validate geographical area of interest matches with function that creates subsection
+   - z-score normalize (e.g., use `sklearn.preprocessing.StandardScaler`)
+   - remove outliers
+   - remove missing data
+   - remove duplicates
+   - validate geographical area of interest matches with function that creates subsection
 
-4. [x] Split data into training and testing sets
+4. Split data into training and testing sets
 
-5. [x] Determining best regression type:
+5. Determining best regression type:
 
    - For each regression type, hyperpamater tuning (determine optimal params)
      - Best subsets
@@ -177,11 +179,11 @@
        - best lambda/alpha
    - Choose best regression type
 
-6. [x] Use given regression type to fit model
+6. Use given regression type to fit model
 
-7. [ ] (hyperparamater tuning ?) afterwards
+7. (hyperparamater tuning ?) afterwards
 
-8. [ ] Evaluate model, reflect, make changes (repeat at step 5)
+8. Evaluate model, reflect, make changes (repeat at step 5)
    - Choose some ...
      - arbitrary metric
      - significance level
