@@ -14,7 +14,7 @@
     - [Inputs/Features](#inputsfeatures)
     - [Output/Target](#outputtarget)
   - [Development Process](#development-process)
-- [Model 2 (TBD)—Some Classification-Based Model Using SVM, Decision Trees, and/or Logistic Regression](#model-2-tbdsome-classification-based-model-using-svm-decision-trees-andor-logistic-regression)
+- [Model 2 Sociodemographic Prediction Using Crime Density Features](#model-2-sociodemographic-prediction-using-crime-density-features)
   - [Data](#data-1)
     - [Items](#items-1)
     - [Inputs/Features](#inputsfeatures-1)
@@ -23,27 +23,26 @@
 
 # Narrative
 
-> Which is a better predictor of crime? 
-> 
+> Which is a better predictor of crime?
+>
 > - Socioeconomic features about people living somewhere
-> - Infrastructure/geological features about the area 
+> - Infrastructure/geological features about the area
 >
 > Note: not trying to determine causal relationship, just determining which is a better predictor (in the nature of data science)
 
 **Model 1:**
 
-| Items | Inputs/Features | Output/Target | Model Type |
-| ----- | --------------- | ------------- | ---------- |
+| Items       | Inputs/Features         | Output/Target   | Model Type                    |
+| ----------- | ----------------------- | --------------- | ----------------------------- |
 | Subsections | Infrastructure features | Crime Frequency | Ridge/Lasso Linear Regression |
 
-**Model 2:** 
+**Model 2:**
 
-| Items | Inputs/Features | Output/Target | Model Type |
-| ----- | --------------- | ------------- | ---------- |
+| Items       | Inputs/Features                                                | Output/Target          | Model Type            |
+| ----------- | -------------------------------------------------------------- | ---------------------- | --------------------- |
 | Subsections | Crime Density, Possibly crime density at different zoom levels | Socioeconomic features | SVM or Decision Trees |
 
 # TODO
-
 
 ## General
 
@@ -59,46 +58,46 @@
 
 ## Data Cleaning/Collection
 
-- [ ] function to ensure that any dataset used for features **fully encompasses/spans** all the subsections chosen
-  - function to check geographical domain of datasets then create intersection $\rightarrow$ give to function that creates subsections
-- [ ] Best way to test for feature multicollinearity?
-  - [ ] e.g., 
-    - [ ] use VIF (Variance Inflation Factor) to test for multicollinearity
+- [x] ~~function to ensure that any dataset used for features **fully encompasses/spans** all the subsections chosen~~ We already span the entire region (verified visually) by just using the sidewalks dataset as the reference area
+- [x] function to check geographical domain of datasets then create intersection $\rightarrow$ give to function that creates subsections
+- [x] Best way to test for feature multicollinearity?
+  - [x] e.g.,
+    - [x] use VIF (Variance Inflation Factor) to test for multicollinearity
     - [x] plot correlation matrix, etc.
-  - [ ] How to handle? (part of data cleaning)
-- [ ] Move feature engineering stuff into data processing, especially because we need the results of that code earlier on (e.g., for data viz)
-- [ ] Determine why the `business_license` dataset is not being working
+  - [ ] Should handle? If so, combine into singular features
+- [x] Move feature engineering stuff into data processing, especially because we need the results of that code earlier on (e.g., for data viz)
+- [x] ~~Determine why the `business_license` dataset is not being working~~ It has addresses but no geometry data, so it cannot be used
 - [ ] If and how to remove outliers
 
 ## Feature Engineering
 
 - [ ] (Optional) Can test with completely random subsections similar to how bagging and random forest work -- i.e., we don't attempt to span the entire area of interest, we just randomly generate subsections within bounds (with replacement).
-  - [ ] Can also randomize the allowed area, which would naturally be random if x and y are randomly generated
+  - [x] ~~Can also randomize the allowed area, which would naturally be random if x and y are randomly generated~~ redundant
   - [ ] This approach can also be used to essentially create unlimited test data for more extensive evaluation
 - [x] ~~Are subsections actually too long (longitudinally)?~~ NO: the long subsections occur because the outer bounds (Tucson city bounds) create a long rectangle so naturally the subsections mirror that shape
   - [x] Solution: do not create $n \times n$ subsections but rather $n \times m$ subsections where $m < n$ - calculate $m$ based on the aspect ratio of the outer bounds
 - [x] (optional) selecting between `geometry.within`, `geometry.intersects` or `geometry.overlaps` depending on the nature of the data set (choose case-by-case)
-- [ ] Fix `create_subsections` function not creating sections over entire outer bounds
-- [x] Determine outer bounds using ~~some better approach~~ (for now: sidewalks feature dataset, since arrests has a ton of geographically dispersed data/outliers way outside bounds of the other datasets) 
+- [x] Fix `create_subsections` function not creating sections over entire outer bounds
+- [x] Determine outer bounds using ~~some better approach~~ (for now: sidewalks feature dataset, since arrests has a ton of geographically dispersed data/outliers way outside bounds of the other datasets)
 - [ ] Setup feature processing for socioeconomic features
 - [x] Implement the separation of _distance_to_ and _density_ infrastructure features
 
 ## Data Visualization
 
 - [ ] Refer EDA slides
-- [ ] Visualize grouped box plots of all the features similar to HW7
-- [ ] Create indicator of what the outer bounds are on the visualizations
+- [x] Visualize grouped box plots of all the features similar to HW7
+- [x] ~~Create indicator of what the outer bounds are on the visualizations~~ The visualization of the subsections already demonstrates this implicitly
 - [x] Change `visualize_objects_in_subsection` function to be more efficient (probably don't need to to filter by objects in subsection and can just plot all objects)
 - [x] Combine the density-feature distributions plots into a single plot/figure
-- [ ] Heatmaps over scatterplot for infrastructure on real map
-  - [ ] When making Folium maps (geographic maps with popup markers on them), use a plotting technique more appropriate to the data (refer to lecture slides). E.g., a heat map, contour plot, hexagon scatter plot.
-  - [ ] Create a heatmap variant of the crime frequency visualization
+- [x] Heatmaps over scatterplot for infrastructure on real map
+  - [x] When making Folium maps (geographic maps with popup markers on them), use a plotting technique more appropriate to the data (refer to lecture slides). E.g., a heat map, contour plot, hexagon scatter plot.
+  - [x] Create a heatmap variant of the crime frequency visualization
 
 ## Hyperparameter Tuning
 
 - [ ] Take all abritrary values (or numbers used in functions that can be thought of as arbitrary and parametrized)
-  - [x] → put into the global config object 
-  - [x] → treat as hyperparameters 
+  - [x] → put into the global config object
+  - [x] → treat as hyperparameters
   - [ ] → tune them
 
 ## Evaluation
@@ -107,9 +106,9 @@
 
 ## Discussion/Reflection
 
-- [ ] Can include in discussion: development process (todo, github history, process of recognizing sparse features and changing to `distance_to`, etc.)
+- [x] Can include in discussion: development process (todo, github history, process of recognizing sparse features and changing to `distance_to`, etc.)
 - [ ] Optional ideas
-  - [ ] Model chain: infra -> predicted density -> predicted socioeconomic feature
+  - [x] ~~Model chain: infra -> predicted density -> predicted socioeconomic feature~~
   - [ ] Abstract to paths for interesting utility/inference
 
 # Model 1—Subsection-Level Crime Frequency Prediction Using Infrastructure and Socioeconomic Features
@@ -118,34 +117,26 @@
 
 ### Items
 
-- [ ] subsections of Tucson
+- subsections of Tucson
 
 ### Inputs/Features
 
-- [ ] number of ... included in subsection
-  - [ ] sidewalk
-  - [ ] bicycle boulevards
-  - [ ] landfill
-  - [ ] fire station
-  - [ ] bridge
-  - [ ] crosswalk
-  - [ ] streetcar route
-  - [ ] streetcar stop
-  - [ ] scenic route
-  - [ ] streetlight
-  - [ ] suntran bus stop
-- [ ] characteristics of subsection
-  - [ ] race
-    - [ ] column for each main race (or arbitrary groupings)
-    - [ ] proportion of total
-  - [ ] mean income
-  - [ ] mean education level
-  - [ ] mean age
-  - [ ] mean speed limit
+- number of ... included in subsection
+  - sidewalk
+  - bicycle boulevards
+  - landfill
+  - fire station
+  - bridge
+  - crosswalk
+  - streetcar route
+  - streetcar stop
+  - scenic route
+  - streetlight
+  - suntran bus stop
 
 ### Output/Target
 
-- [ ] number of crimes per time legth of data set (a.k.a. crime frequency)
+- number of crimes per time legth of data set (a.k.a. crime frequency)
 
 ## Development Process
 
@@ -198,29 +189,28 @@
      - real model developed in actual scientific literature that does same thing
        - theres also a section of the report "Related Works" for this
 
-# Model 2 (TBD)—Some Classification-Based Model Using SVM, Decision Trees, and/or Logistic Regression
-
-want to:
-
-- use other concepts from class like
-  - qualitative outputs (logistic regression)
-  - support vectors
-  - decision trees
+# Model 2 Sociodemographic Prediction Using Crime Density Features
 
 ## Data
 
 ### Items
 
-...tbd
+- subsections of Tucson
 
 ### Inputs/Features
 
-...tbd
+- crime density
+  - crime density at different zoom levels
 
 ### Output/Target
 
-...tbd
+- characteristics of subsection
+  - race
+    - column for each main race (or arbitrary groupings)
+    - proportion of total
+  - mean income
+  - mean education level
+  - mean age
+  - ~~mean speed limit~~ Not worth taking time to figure out how to preprocess this data
 
 ## Development Process
-
-...tbd
