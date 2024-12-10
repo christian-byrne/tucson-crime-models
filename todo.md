@@ -1,8 +1,8 @@
 - [Narrative](#narrative)
 - [TODO](#todo)
   - [General](#general)
-  - [Data Exploration](#data-exploration)
   - [Data Cleaning/Collection](#data-cleaningcollection)
+  - [Data Exploration](#data-exploration)
   - [Feature Engineering](#feature-engineering)
   - [Data Visualization](#data-visualization)
   - [Hyperparameter Tuning](#hyperparameter-tuning)
@@ -51,25 +51,28 @@
 - [ ] Use processes from previous HW
   - [ ] data scale transform
 
+## Data Cleaning/Collection
+
+
+- [ ] Use github link to load dependencies instead of requiring local file
+- [x] ~~function to ensure that any dataset used for features **fully encompasses/spans** all the subsections chosen~~ We already span the entire region (verified visually) by just using the sidewalks dataset as the reference area
+- [x] function to check geographical domain of datasets then create intersection $\rightarrow$ give to function that creates subsections
+- [x] Best way to test for feature multicollinearity?
+  - [x] e.g.,
+    - [x] ~~use VIF (Variance Inflation Factor) to test for multicollinearity~~ correlation matrix with a threshold seems adequate
+    - [x] plot correlation matrix, etc.
+  - [x] Resolution strategy: if scales are different → drop the feature that has lower correlation with target variable; else if scales are same → use PCA to combine into single feature
+- [x] Move feature engineering stuff into data processing, especially because we need the results of that code earlier on (e.g., for data viz)
+- [x] ~~Determine why the `business_license` dataset is not being working~~ It has addresses but no geometry data, so it cannot be used
+- [ ] Define what an outlier would be → If and how to remove?
+
+
 ## Data Exploration
 
 - [x] ~~Decide how to use speed limit data -- e.g., use mean speed limit for each subsection to create singular value per data item (row) -- would require considering the length of road as well so it's difficult~~ (not important)
 - [x] (most likely no longer relevant) ~~Use a more efficient method of joining data by geographic distance. E.g., connecting arrest incidents with nearest sidewalk. Current method could take hours with 50k arrests dataset.~~
 - [x] In the [datasets](https://github.com/christian-byrne/tucson-crime-models/tree/main/data), go to `infrastructure` folder, choose other infrastructure datasets (e.g., `streetlights`), and explore correlations in the same way it's been done for sidewalks in [Analzing correlation between distance to sidewalks and arrest frequency](https://colab.research.google.com/github/christian-byrne/tucson-crime-models/blob/main/main.ipynb#scrollTo=q-fOMfTsP1vG&line=1&uniqifier=1)
 - [x] ...Explore other trends in the data with other approaches. See these [suggestions given by LLM](https://github.com/christian-byrne/tucson-crime-models/blob/main/doc/correlation-discovery.md)
-
-## Data Cleaning/Collection
-
-- [x] ~~function to ensure that any dataset used for features **fully encompasses/spans** all the subsections chosen~~ We already span the entire region (verified visually) by just using the sidewalks dataset as the reference area
-- [x] function to check geographical domain of datasets then create intersection $\rightarrow$ give to function that creates subsections
-- [x] Best way to test for feature multicollinearity?
-  - [x] e.g.,
-    - [x] use VIF (Variance Inflation Factor) to test for multicollinearity
-    - [x] plot correlation matrix, etc.
-  - [ ] Should handle? If so, combine into singular features
-- [x] Move feature engineering stuff into data processing, especially because we need the results of that code earlier on (e.g., for data viz)
-- [x] ~~Determine why the `business_license` dataset is not being working~~ It has addresses but no geometry data, so it cannot be used
-- [ ] If and how to remove outliers
 
 ## Feature Engineering
 
@@ -105,6 +108,10 @@
 ## Evaluation
 
 - [ ] On top of using the test data from initial split, also can make more subsections by changing the params of the `create_subsections` function to use different sizes, diffferent type of randomness, etc.
+- [ ] For both models, need more ways to evaluate
+  - [ ] compare vs baseline model
+  - [ ] compare vs real model in scientific literature or similar algorithm
+- [ ] (this is from the rubric) For both models, need more visualizations in the evaluation stage to demonstrate the model's performance and interpret how it works (or our best guess at how it works)
 
 ## Discussion/Reflection
 
