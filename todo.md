@@ -23,6 +23,7 @@
 
 # Narrative
 
+
 > Which is a better predictor of crime?
 >
 > - Socioeconomic features about people living somewhere
@@ -46,6 +47,7 @@
 
 ## General
 
+- [ ] (optional - If have time) Combine arrests datasets from diff years into one dataset in beginning of notebook
 - [ ] edit written sections of notebook
 - [ ] add inline comments where necessary
 - [ ] Use processes from previous HW

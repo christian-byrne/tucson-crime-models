@@ -13,3 +13,7 @@ data/crime/Tucson_Police_Reported_Crimes.geojson
 
 # Before converting to notebook
 .src-pre-notebook-conversion
+
+doc/sample-projs
+myenv
+myvenv
