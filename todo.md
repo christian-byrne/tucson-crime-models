@@ -47,16 +47,16 @@
 
 ## General
 
-- [ ] (optional - If have time) Combine arrests datasets from diff years into one dataset in beginning of notebook
+- [ ] ~~(optional - If have time) Combine arrests datasets from diff years into one dataset in beginning of notebook~~ no time
 - [ ] edit written sections of notebook
 - [ ] add inline comments where necessary
-- [ ] Use processes from previous HW
-  - [ ] data scale transform
+- [x] Use processes from previous HW
+  - [x] data scale transform
 
 ## Data Cleaning/Collection
 
 
-- [ ] Use github link to load dependencies instead of requiring local file
+- [x] Use github link to load dependencies instead of requiring local file
 - [x] ~~function to ensure that any dataset used for features **fully encompasses/spans** all the subsections chosen~~ We already span the entire region (verified visually) by just using the sidewalks dataset as the reference area
 - [x] function to check geographical domain of datasets then create intersection $\rightarrow$ give to function that creates subsections
 - [x] Best way to test for feature multicollinearity?
@@ -66,7 +66,7 @@
   - [x] Resolution strategy: if scales are different → drop the feature that has lower correlation with target variable; else if scales are same → use PCA to combine into single feature
 - [x] Move feature engineering stuff into data processing, especially because we need the results of that code earlier on (e.g., for data viz)
 - [x] ~~Determine why the `business_license` dataset is not being working~~ It has addresses but no geometry data, so it cannot be used
-- [ ] Define what an outlier would be → If and how to remove?
+- [x] Define what an outlier would be → If and how to remove?
 
 
 ## Data Exploration
@@ -110,17 +110,17 @@
 ## Evaluation
 
 - [ ] On top of using the test data from initial split, also can make more subsections by changing the params of the `create_subsections` function to use different sizes, diffferent type of randomness, etc.
-- [ ] For both models, need more ways to evaluate
-  - [ ] compare vs baseline model
-  - [ ] compare vs real model in scientific literature or similar algorithm
-- [ ] (this is from the rubric) For both models, need more visualizations in the evaluation stage to demonstrate the model's performance and interpret how it works (or our best guess at how it works)
+- [x] For both models, need more ways to evaluate
+  - [x] compare vs baseline model
+  - [x] ~~compare vs real model in scientific literature or similar algorithm~~ too hard to find
+- [x] (from rubric) For both models, need more visualizations in the evaluation stage to demonstrate the model's performance and interpret how it works (or our best guess at how it works)
 
 ## Discussion/Reflection
 
 - [x] Can include in discussion: development process (todo, github history, process of recognizing sparse features and changing to `distance_to`, etc.)
-- [ ] Optional ideas
+- [x] Optional ideas
   - [x] ~~Model chain: infra -> predicted density -> predicted socioeconomic feature~~
-  - [ ] Abstract to paths for interesting utility/inference
+  - [x] ~~Abstract to paths for interesting utility/inference~~ not enough time
 
 # Model 1—Subsection-Level Crime Frequency Prediction Using Infrastructure and Socioeconomic Features
 
